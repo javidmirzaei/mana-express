@@ -1,9 +1,14 @@
-class baseControllers {
-  constructor(model) {
-    this.model = model; 
+import { NextFunction, Request, Response } from 'express';
+import { Model } from 'mongoose';
+
+export class baseControllers {
+  model: Model<any>;
+
+  constructor(model: Model<any>) {
+    this.model = model;
   }
 
-  index = async (req, res, next) => {
+  async index(req: Request, res: Response, next: NextFunction) {
     try {
       const data = await this.model.find();
       res.status(200).json(data);
@@ -14,25 +19,25 @@ class baseControllers {
     }
   };
 
-  show = async (req, res, next) => {
+  async show(req: Request, res: Response, next: NextFunction) {
     const { id } = req.params;
     const data = await this.model.findOne({ _id: id });
     res.status(200).json(data);
   };
 
-  store = async (req, res, next) => {
+  async store(req: Request, res: Response, next: NextFunction) {
     try {
       const newItem = new this.model(req.body);
       const savedItem = await newItem.save();
       res.status(201).json(savedItem);
-    } catch (error) {
+    } catch (error: any) {
       res
         .status(400)
         .json({ message: "Error creating item", error: error.message });
     }
   };
 
-  update = async (req, res, next) => {
+  async update(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
       const updatedItem = await this.model.findByIdAndUpdate(id, req.body, {
@@ -47,7 +52,7 @@ class baseControllers {
     }
   };
 
-  delete = async (req, res, next) => {
+  async delete(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
       const deletedItem = await this.model.findByIdAndDelete(id);
@@ -61,4 +66,3 @@ class baseControllers {
   };
 }
 
-module.exports = baseControllers;
