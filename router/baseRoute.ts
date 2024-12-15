@@ -1,6 +1,12 @@
-class BaseRoute {
-  constructor(controller) {
-    this.router = require("express").Router();
+import { IRouter, Router } from 'express';
+import { ControllerType , RouteType } from "@ManaTypes"
+
+export class BaseRoute implements RouteType {
+  router: IRouter;
+  controller: ControllerType;
+  
+  constructor(controller: ControllerType) {
+    this.router = Router();
     this.controller = controller;
 
     this.initRoutes();
@@ -19,5 +25,3 @@ class BaseRoute {
     return this.router;
   }
 }
-
-module.exports = BaseRoute;
