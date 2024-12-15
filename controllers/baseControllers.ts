@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 import { Model } from 'mongoose';
+import { ControllerType } from '../types';
 
-export class baseControllers {
+export class baseControllers implements ControllerType {
   model: Model<any>;
 
   constructor(model: Model<any>) {
