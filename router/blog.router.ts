@@ -1,18 +1,7 @@
-// const BaseRoute = require("./baseRoute");
-// const blogController = require("../controllers/blogControllers");
-import { baseControllers } from "@controllers/baseControllers";
-import { ControllerType } from "../types";
 import { BaseRoute } from "./baseRoute";
-import { BlogController } from "@controllers/BlogController";
-import { Request, Response, NextFunction } from "express";
-import { Model } from "mongoose";
+import { BlogController } from "../controllers/BlogController";
 
-export class blogRoute extends BaseRoute {
-  constructor(blogController:ControllerType) {
-    super(blogController);
-  }
-}
+const blogController = new BlogController();
+const blogRoute = new BaseRoute(blogController);
 
-
-const newBlogController = new BlogController();
-export const newBlogRouter = new blogRoute(newBlogController);
+export default blogRoute.getRouter();

@@ -18,4 +18,12 @@ export const blogSchema = new Schema(
   }
 );
 
-export const blogModel = model("blog", blogSchema);
+interface IBlog {
+  title: string;
+  text: string;
+  show: boolean;
+  likes: number;
+  bookmarks: string[];
+}
+
+export const blogModel = model<IBlog>("blog", blogSchema);

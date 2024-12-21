@@ -1,11 +1,14 @@
 import { NextFunction, Request, Response } from 'express';
 import { Model } from 'mongoose';
-import { ControllerType } from '../types';
+import { ControllerType } from '@ManaTypes';
 
 export class baseControllers implements ControllerType {
-  model: Model<any>;
+  protected model: Model<any>;
 
   constructor(model: Model<any>) {
+    if (!model) {
+      throw new Error('Model is required');
+    }
     this.model = model;
   }
 

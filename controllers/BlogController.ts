@@ -1,5 +1,5 @@
-import { blogModel } from "@models/blog.model"
-import { baseControllers } from "@controllers/baseControllers"
+import { blogModel } from "../model/blog.model"
+import { baseControllers } from "./baseControllers"
 
 export class BlogController extends baseControllers {
   constructor() {

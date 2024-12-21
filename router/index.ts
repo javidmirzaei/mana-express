@@ -1,11 +1,14 @@
-const { Router } = require("express");
-const userRoute = require("./user.router");
-const blogRouter = require("./blog.router");
+import { Router } from "express";
+import userRoute from "./user.router";
+import blogRouter from "./blog.router";
+
 const router = Router();
+
+router.get("/", (req, res) => {
+  res.json({ message: "Hello World" });
+});
 
 router.use("/users", userRoute);
 router.use("/blog", blogRouter);
 
-module.exports = {
-  allRoutes: router,
-};
+export const allRoutes = router;

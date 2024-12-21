@@ -1,4 +1,5 @@
-const { default: mongoose } = require("mongoose");
+import mongoose from 'mongoose';
+
 const DB_URL = "mongodb://localhost:27017/sth";
 
 const connectDb = async () => {
