@@ -1,7 +1,7 @@
-const fs = require("fs");
-const path = require("path");
+import * as fs from "fs";
+import * as path from "path";
 
-const createController = (name) => {
+const createController = (name: string): void => {
   const controllerName = `${name.charAt(0).toUpperCase()}${name.slice(
     1
   )}Controller`;
@@ -10,21 +10,19 @@ const createController = (name) => {
   const controllerPath = path.join(
     __dirname,
     "controllers",
-    `${controllerName}.js`
+    `${controllerName}.ts`
   );
 
   const controllerTemplate = `
-const BaseController = require("./baseControllers");
-const { ${modelName} } = require("../models/${name}.model");
+import { ${modelName} } from "../model/${name}.model";
+import { baseControllers } from "./baseControllers";
 
-class ${controllerName} extends BaseController {
+export class ${controllerName} extends baseControllers {
   constructor() {
     super(${modelName});
   }
-}
+}`;
 
-module.exports = new ${controllerName}();
-  `;
   fs.writeFileSync(controllerPath, controllerTemplate.trim());
   console.log(`Controller created: ${controllerPath}`);
 };
@@ -35,4 +33,4 @@ if (!name) {
   process.exit(1);
 }
 
-createController(name);
+createController(name); 

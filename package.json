@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev -r tsconfig-paths/register --respawn app.ts",
-    "create:controller": "node cli.js"
+    "create:controller": "ts-node cli.ts"
   },
   "keywords": [],
   "author": "",
