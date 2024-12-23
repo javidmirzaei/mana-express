@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev -r tsconfig-paths/register --respawn app.ts",
-    "create:controller": "ts-node cli.ts"
+    "create:controller": "ts-node cli.ts",
+    "mana": "ts-node cli/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +14,7 @@
   "dependencies": {
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.2",
+    "commander": "^12.0.0",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
